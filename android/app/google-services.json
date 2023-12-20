@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "261526798630",
+    "project_id": "furniqo",
+    "storage_bucket": "furniqo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261526798630:android:393018e17cfa9dd48401e7",
+        "android_client_info": {
+          "package_name": "com.pcpsgroup.furnitureapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "261526798630-eis1jnta9ovc8ve3il4qlpdb49s23ugq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDylv4g2xA88R2CpjbVYiintVu2O_GsueI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "261526798630-eis1jnta9ovc8ve3il4qlpdb49s23ugq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "261526798630-089chi929l88odomfdgrf5ojjth2atmb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.pcpsgroup.furnitureapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
