@@ -62,7 +62,7 @@ class _homepageState extends State<homepage> {
                 Text('Hot Sales', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, fontFamily: 'RobotoSerif'),),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  
+
                   children: [
                     Container(
                       decoration: BoxDecoration(border: Border.all(color: Colors.black12)),
