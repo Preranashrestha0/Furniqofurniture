@@ -99,9 +99,10 @@ class loginpagestate extends State<loginpage> {
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
     );
-
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>mainpage()));
+    mainpage;
     // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    return await FirebaseAuth.instance.signInWithCredential(credential) ;
   }
 
 

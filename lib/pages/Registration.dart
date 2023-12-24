@@ -128,7 +128,7 @@ class registrationstate extends State<registration>{
                         icon: Icon(Icons.lock),
                         labelText: 'Password*',
                       ),
-                      
+
                     ),
                   ),
                   SizedBox(height: 25,),
