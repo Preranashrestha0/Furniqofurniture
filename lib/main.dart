@@ -1,16 +1,12 @@
-
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:furnitureapp/pages/Contact_page.dart';
+import 'package:furnitureapp/pages/Profile_page.dart';
 import 'package:furnitureapp/pages/Registration.dart';
 import 'package:furnitureapp/pages/furnihomepage.dart';
 import 'package:furnitureapp/pages/mainpage.dart';
-import 'package:furnitureapp/pages/post.dart';
-import 'package:furnitureapp/pages/posttest.dart';
-import 'package:furnitureapp/pages/test.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+
 import 'firebase_options.dart';
-import 'models/FirebaseUser.dart';
-import 'package:firebase_app_check/firebase_app_check.dart';
 
 
 void main() async{
@@ -38,6 +34,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),

@@ -61,7 +61,7 @@ class _postState extends State<post> {
        print('File uploaded successfully!');
      }
       catch(e){
-        print('Errpr occurred: $e');
+        print('Error occurred: $e');
       }
     } catch (e) {
       print('Error occurred: $e');

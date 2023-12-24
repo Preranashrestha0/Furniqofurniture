@@ -8,7 +8,6 @@ class furnihomepage extends StatefulWidget{
     return furnihomepagestate();
   }
 
-
 }
 
 class furnihomepagestate extends State<furnihomepage>{

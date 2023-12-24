@@ -78,6 +78,16 @@ flutter:
     - assets/images/homepagepicture.png
     - assets/images/google_icon.png
     - assets/images/facebook_icon.png
+    - assets/images/Female_Profile.png
+    - assets/images/icon_order.png
+    - assets/images/log_out.png
+    - assets/images/Phone_Message.png
+    - assets/images/wishlist.png
+    - assets/images/about_us.png
+    - assets/images/more_than.png
+
+
+
 
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

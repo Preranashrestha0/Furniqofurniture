@@ -2,11 +2,11 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:furnitureapp/pages/favorite.dart';
-import 'package:furnitureapp/pages/homepage.dart';
+import 'package:furnitureapp/pages/Profile_page.dart';
+import 'package:furnitureapp/pages/Wishlist_page.dart';
+import 'package:furnitureapp/pages/Home_Page.dart';
 import 'package:furnitureapp/pages/post.dart';
 import 'package:furnitureapp/pages/posttest.dart';
-import 'package:furnitureapp/pages/profile.dart';
 import 'package:furnitureapp/pages/search.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -24,8 +24,8 @@ class mainpagestate extends State<mainpage>{
     homepage(),
     searchpage(),
     post(),
-    favourite(),
-    profile()
+    WishlistPage(),
+    ProfilePage(),
   ];
   void _onItemTapped(int index) {
     setState(() {
@@ -62,14 +62,15 @@ class mainpagestate extends State<mainpage>{
       onLoading: _onLoading,
       enablePullDown: true,
       child: Scaffold(
-        appBar: AppBar(
-          actions: [
-            IconButton(onPressed: () async{
-              await GoogleSignIn().signOut();
-              FirebaseAuth.instance.signOut();
-            }, icon: Icon(Icons.power_settings_new))
-          ],
-        ),
+      // appBar: AppBar(
+      //   actions: [
+      //     IconButton(onPressed: () async{
+      //       await GoogleSignIn().signOut();
+      //       FirebaseAuth.instance.signOut();
+      //     }, icon: Icon(Icons.power_settings_new))
+      //   ],
+      // ),
+
         body: IndexedStack(
           index: _selectedIndex,
           children: _pages, //New
@@ -117,8 +118,6 @@ class mainpagestate extends State<mainpage>{
       
       ),
     );
-
-
 
   }
 }
