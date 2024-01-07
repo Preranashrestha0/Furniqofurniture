@@ -13,7 +13,8 @@ class post extends StatefulWidget {
 
 }
 class _postState extends State<post> {
-  TextEditingController _descriptionController = TextEditingController();
+  final _namecontroller = TextEditingController();
+  final _descriptionController = TextEditingController();
   File? _photo;
   final ImagePicker _picker = ImagePicker();
 
@@ -53,10 +54,15 @@ class _postState extends State<post> {
        var uploadTask = storageRef.putFile(_photo!);
        var downloadUrl = await (await uploadTask).ref.getDownloadURL();
 
-       FirebaseFirestore.instance.collection("furniture_list").add({
-         'description': _descriptionController.text,
-         'image': downloadUrl.toString(),
-       });
+       if(_descriptionController.text.isNotEmpty
+           &&_namecontroller.text.isNotEmpty
+           &&_photo!=null){
+         FirebaseFirestore.instance.collection("furniture_list").add({
+           'name': _namecontroller.text,
+           'description': _descriptionController.text,
+           'image': downloadUrl.toString(),
+         });
+       }
 
        print('File uploaded successfully!');
      }
@@ -73,20 +79,38 @@ class _postState extends State<post> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.pinkAccent,
         title: Text(
           "Post a Furniture",
           style: TextStyle(
             fontFamily: 'RobotoSerif',
             fontWeight: FontWeight.bold,
             fontSize: 15,
+            color: Colors.pinkAccent
           ),
         ),
       ),
       body: Column(
         children: [
           SizedBox(
-            height: 32,
+            height: 10,
+          ),
+          Container(
+            margin: EdgeInsets.all(10),
+            height: size.height/16,
+            decoration: BoxDecoration(border: Border.all(color: Colors.grey), borderRadius: BorderRadius.circular(10)),
+            child: TextFormField(
+              controller: _namecontroller,
+              decoration: InputDecoration(
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white10),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white10),
+                  ),
+                hintText: 'Enter the name of the product'
+
+              ),
+            ),
           ),
           Container(
             margin: EdgeInsets.all(10),
@@ -152,7 +176,9 @@ class _postState extends State<post> {
             width: size.width / 2,
             child: ElevatedButton(
               onPressed: () async {
-                if (_descriptionController.text.isNotEmpty && _photo != null) {
+                if (_descriptionController.text.isNotEmpty &&
+                _namecontroller.text.isNotEmpty
+                    && _photo != null) {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -166,7 +192,6 @@ class _postState extends State<post> {
                               style: TextStyle(color: Colors.amber),
                             ),
                             onPressed: () {
-                              _descriptionController.clear();
                               Navigator.of(context).pop();
                             },
                           ),
@@ -175,7 +200,6 @@ class _postState extends State<post> {
                               // Upload image file to Firebase Storage
                               uploadFile();
                               Navigator.of(context).pop();
-                              _descriptionController.clear();
                             },
                             child: Text("Submit", style: TextStyle(color: Colors.amber)),
                           ),

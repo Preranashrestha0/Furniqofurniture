@@ -47,6 +47,9 @@ dependencies:
   firebase_app_check: ^0.2.1+8
   pull_to_refresh:
   connectivity_plus:
+  firebase_database:
+  get: ^4.6.5
+  flutter_local_notifications: ^16.2.0
 
 dev_dependencies:
   flutter_test:

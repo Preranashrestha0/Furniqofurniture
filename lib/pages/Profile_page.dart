@@ -1,4 +1,4 @@
-//import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:furnitureapp/components/custom_container_widget.dart';
 import 'package:furnitureapp/components/divider.dart';
@@ -6,14 +6,14 @@ import 'package:furnitureapp/pages/Contact_page.dart';
 import 'package:furnitureapp/pages/Order_history.dart';
 import 'package:furnitureapp/pages/Wishlist_page.dart';
 
+class Profile_page extends StatefulWidget {
+  const Profile_page({super.key});
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  @override
+  State<Profile_page> createState() => _Profile_pageState();
+}
 
-  // // sign user out method
-  // void signOutUser(){
-  //   FirebaseAuth.instance.signOut();
-  // }
+class _Profile_pageState extends State<Profile_page> {
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +21,12 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.white, title:
       Text("Profile", style:
-        TextStyle(color: Colors.pinkAccent,
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'RobotoSerif'),
-        ),
-        centerTitle: true),
+      TextStyle(color: Colors.pinkAccent,
+          fontSize: 22,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'RobotoSerif'),
+      ),
+          centerTitle: true),
 
       backgroundColor: Colors.white,
       body: Column(
@@ -67,14 +67,14 @@ class ProfilePage extends StatelessWidget {
                 );
               },
               rowcontent: Row(
-              children: [
-              SizedBox(width: 10,),
-              Image.asset('assets/images/icon_order.png', height: 40,),
-              SizedBox(width: 15,),
-              Text('My Orders',style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.black, fontFamily: 'RobotoSerif',),),
-              SizedBox(width: 160,),
-              Icon(Icons.keyboard_arrow_right, size: 30),
-              ],
+                children: [
+                  SizedBox(width: 10,),
+                  Image.asset('assets/images/icon_order.png', height: 40,),
+                  SizedBox(width: 15,),
+                  Text('My Orders',style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.black, fontFamily: 'RobotoSerif',),),
+                  SizedBox(width: 160,),
+                  Icon(Icons.keyboard_arrow_right, size: 30),
+                ],
               ),
             ),
 
@@ -88,14 +88,14 @@ class ProfilePage extends StatelessWidget {
                 );
               },
               rowcontent:  Row(
-              children: [
-                SizedBox(width: 10,),
-                Image.asset('assets/images/wishlist.png', height: 100,),
-                SizedBox(width: 15,),
-                Text('Wishlist',style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.black, fontFamily: 'RobotoSerif',),),
-                SizedBox(width: 180,),
-                Icon(Icons.keyboard_arrow_right, size: 30),
-              ],
+                children: [
+                  SizedBox(width: 10,),
+                  Image.asset('assets/images/wishlist.png', height: 100,),
+                  SizedBox(width: 15,),
+                  Text('Wishlist',style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.black, fontFamily: 'RobotoSerif',),),
+                  SizedBox(width: 180,),
+                  Icon(Icons.keyboard_arrow_right, size: 30),
+                ],
               ),
             ),
 
@@ -138,16 +138,16 @@ class ProfilePage extends StatelessWidget {
             // container for logout the application
             CustomContainerWidget(
               onTap: () {},
-                rowcontent: Row(
-                  children: [
-                    SizedBox(width: 10,),
-                    Image.asset('assets/images/log_out.png', height: 26,),
-                    SizedBox(width: 15,),
-                    Text('Log Out',style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.black, fontFamily: 'RobotoSerif',),),
+              rowcontent: Row(
+                children: [
+                  SizedBox(width: 10,),
+                  Image.asset('assets/images/log_out.png', height: 26,),
+                  SizedBox(width: 15,),
+                  Text('Log Out',style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: Colors.black, fontFamily: 'RobotoSerif',),),
 
 
-                  ],
-                ),
+                ],
+              ),
             ),
           ]
       ),

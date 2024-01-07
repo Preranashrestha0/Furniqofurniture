@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:furnitureapp/pages/loginpage.dart';
 
 //authentication instance
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -17,8 +19,12 @@ class registration extends StatefulWidget{
 class registrationstate extends State<registration>{
   //variables declared
   final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _phoneNoController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  //To Toggle Password Text Visibility.
+  bool _obscureText = true;
 
   late bool _success;
   late String _userEmail;
@@ -33,6 +39,7 @@ class registrationstate extends State<registration>{
       setState(() {
         _success = true;
         _userEmail = user.email!;
+        Navigator.push(context, MaterialPageRoute(builder: (context) => loginpage()));
       });
     }else{
       setState(() {
@@ -66,7 +73,8 @@ class registrationstate extends State<registration>{
                     height: 50,
                     width: size.width/1.1,
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),),
-                    child: TextField(
+                    child: TextFormField(
+                      validator: (val) => val!.length < 6 ? "Username is too short." : null,
                       controller: _nameController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -75,25 +83,27 @@ class registrationstate extends State<registration>{
                       ),
                     ),
                   ),
-                  // SizedBox(height: 10,),
-                  // Container(
-                  //   height: 50,
-                  //   width: size.width/1.1,
-                  //   decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),),
-                  //   child: TextField(
-                  //     decoration: const InputDecoration(
-                  //       border: OutlineInputBorder(),
-                  //       icon: Icon(Icons.place),
-                  //       labelText: 'Address *',
-                  //     ),
-                  //   ),
-                  // ),
                   SizedBox(height: 10,),
                   Container(
                     height: 50,
                     width: size.width/1.1,
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),),
                     child: TextField(
+                      controller: _addressController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        icon: Icon(Icons.place),
+                        labelText: 'Address *',
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10,),
+                  Container(
+                    height: 50,
+                    width: size.width/1.1,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),),
+                    child: TextFormField(
+                      validator: (val) => !val!.contains("@") ? "Invalid Email" : null,
                       controller: _emailController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -103,27 +113,37 @@ class registrationstate extends State<registration>{
                     ),
                   ),
                   SizedBox(height: 10,),
-                  // Container(
-                  //   height: 50,
-                  //   width: size.width/1.1,
-                  //   decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),),
-                  //   child: TextField(
-                  //     decoration: const InputDecoration(
-                  //       border: OutlineInputBorder(),
-                  //       icon: Icon(Icons.call),
-                  //       labelText: 'Phone*',
-                  //     ),
-                  //   ),
-                  // ),
-                  // SizedBox(height: 10,),
                   Container(
                     height: 50,
                     width: size.width/1.1,
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),),
                     child: TextField(
-                      controller: _passwordController,
-                      obscureText: true,
+                      controller: _phoneNoController,
                       decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        icon: Icon(Icons.call),
+                        labelText: 'Phone*',
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10,),
+                  Container(
+                    height: 50,
+                    width: size.width/1.1,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),),
+                    child: TextFormField(
+                      validator: (val) => val!.length < 6 ? "Password Is Too Short" : null,
+                      controller: _passwordController,
+                      obscureText: _obscureText,
+                      decoration: InputDecoration(
+                        suffixIcon: GestureDetector(
+                          onTap: (){
+                            setState(() {
+                              _obscureText =!_obscureText;
+                            });
+                          },
+                          child: Icon(_obscureText ? Icons.visibility_off:Icons.visibility),
+                        ),
                         border: OutlineInputBorder(),
                         icon: Icon(Icons.lock),
                         labelText: 'Password*',
@@ -132,9 +152,22 @@ class registrationstate extends State<registration>{
                     ),
                   ),
                   SizedBox(height: 25,),
-                  GestureDetector(
-                    onTap: () async{
-                      _register();
+                  ElevatedButton(
+                    onPressed: () async{
+                      if(_nameController.text.isNotEmpty&&
+                      _addressController.text.isNotEmpty&&
+                      _phoneNoController.text.isNotEmpty&&
+                      _emailController.text.isNotEmpty&&
+                      _passwordController.text.isNotEmpty){
+                        FirebaseFirestore.instance.collection("users").add({
+                          "name": _nameController.text,
+                          "address": _addressController.text,
+                          "phone": _phoneNoController.text,
+                          "email": _emailController.text,
+                          "password": _passwordController.text,
+                        });
+                        _register();
+                      }
                     },
                     child: Container(
                       height: size.height/15,

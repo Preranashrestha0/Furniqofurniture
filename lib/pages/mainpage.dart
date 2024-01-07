@@ -25,7 +25,7 @@ class mainpagestate extends State<mainpage>{
     searchpage(),
     post(),
     WishlistPage(),
-    ProfilePage(),
+    Profile_page(),
   ];
   void _onItemTapped(int index) {
     setState(() {

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:furnitureapp/pages/Wishlist_page.dart';
 
 class Test extends StatefulWidget {
   const Test({super.key});
@@ -11,14 +12,11 @@ class Test extends StatefulWidget {
 }
 
 class _TestState extends State<Test> {
-  CollectionReference _ref = FirebaseFirestore.instance.collection("furniture_list");
-  late Stream <QuerySnapshot> _streamItems ;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _streamItems = _ref.snapshots();
   }
   Future<List<Map<String, dynamic>>> getDataFromFirestore() async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('furniture_list').get();
@@ -28,6 +26,10 @@ class _TestState extends State<Test> {
     Reference ref = FirebaseStorage.instance.ref().child(images);
     return await ref.getDownloadURL();
   }
+  var imageURL = 'https://firebasestorage.googleapis.com/v0/b/furniqo.appspot.com/o/images%2F1703559803796.jpg?alt=media&token=3582b168-e9e5-46ea-919b-17a78248d37d';
+
+  final Stream<QuerySnapshot> _data = FirebaseFirestore.instance.collection('furniture_list').snapshots();
+
 
 
   @override
@@ -61,44 +63,52 @@ class _TestState extends State<Test> {
       appBar: AppBar(
         title: Text('Data from Firestore'),
       ),
-      body: FutureBuilder<List<Map<String, dynamic>>>(
-        future: getDataFromFirestore(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
-          } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          } else {
-            List<Map<String, dynamic>> data = snapshot.data ?? [];
-            return ListView.builder(
-              itemCount: data.length,
-              itemBuilder: (context, index) {
-                // Assuming your data contains a field 'imagePath' for image paths
-                String image = data[index]['image'];
-                return Column(
-                  children: [
-                    // Display other data fields as needed
-                    Text(data[index]['description']),
-                    // Display the image
-                    FutureBuilder<String>(
-                      future: downloadImage(image),
-                      builder: (context, imageSnapshot) {
-                        if (imageSnapshot.connectionState == ConnectionState.waiting) {
-                          return CircularProgressIndicator();
-                        } else if (imageSnapshot.hasError) {
-                          return Text('Error: ${imageSnapshot.error}');
-                        } else {
-                          String imageUrl = imageSnapshot.data ?? '';
-                          return Image.network(imageUrl);
-                        }
-                      },
-                    ),
-                    Divider(), // Add a divider between items
-                  ],
-                );
-              },
-            );
+      body: StreamBuilder<QuerySnapshot>(
+        stream: _data,
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Text('Something went wrong');
           }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Text("Loading");
+          }
+          return ListView(
+            children: snapshot.data!.docs.map((DocumentSnapshot document) {
+              Map<String, dynamic> data = document.data()! as Map<String,
+                  dynamic>;
+              return Container(
+                margin: EdgeInsets.all(10),
+                decoration: BoxDecoration(border: Border.all(color: Colors.grey), borderRadius: BorderRadius.circular(10)),
+                height: 200,
+                child: ListTile(
+                  title: Text(data['name'],style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,
+                      color: Colors.pinkAccent,
+                      fontFamily: 'RobotoSerif'),
+                  ),
+                  subtitle: Column(
+                    children: [
+                      Image(
+                        image: NetworkImage(data['image']), // ----------- the line that should change
+                        width: 200,
+                        height: 100,
+
+                      ),
+                      Text(data['description'], style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal,
+                          color: Colors.black,
+                          fontFamily: 'Inika'),),
+                      TextButton
+                        (
+                          onPressed: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> WishlistPage()));
+                          },
+                          child: Text('Add To Cart', style: TextStyle(color: Colors.pinkAccent, fontFamily: 'Inika', fontWeight: FontWeight.bold, fontSize: 20),))
+                    ],
+                  ),
+                ),
+              );
+            }).toList(),
+          );
+
         },
       ),
     );
