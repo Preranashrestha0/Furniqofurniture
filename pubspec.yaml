@@ -42,15 +42,27 @@ dependencies:
   cloud_firestore: ^4.13.6
   http:
   path: ^1.8.0
-  image_picker: ^0.8.4
+  image_picker: ^1.0.6
   firebase_storage: ^11.5.6
   firebase_app_check: ^0.2.1+8
   pull_to_refresh:
   connectivity_plus:
+  firebase_database:
+  get: ^4.6.5
+  flutter_local_notifications:
+  firebase_messaging:
+  dots_indicator: ^2.0.0
+  provider: ^5.0.0
+  overlay_support:
+  cached_network_image: ^3.3.1
+  carousel_slider: ^4.0.0
+  badges:
+#  flutter_screenutil: ^5.0.0+2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  form_field_validator: ^1.0.1
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -74,8 +86,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/circle.png
-    - assets/images/logo.png
-    - assets/images/homepagepicture.png
+    - assets/images/app_logo.png
     - assets/images/google_icon.png
     - assets/images/facebook_icon.png
     - assets/images/Female_Profile.png
@@ -85,6 +96,7 @@ flutter:
     - assets/images/wishlist.png
     - assets/images/about_us.png
     - assets/images/more_than.png
+    - assets/images/homepagepic.png
 
 
 

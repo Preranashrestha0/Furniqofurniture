@@ -22,7 +22,7 @@ class CustomContainerWidget extends StatelessWidget {
           width: size.width/1.06,
           decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(2),
-          border: Border.all(color: Colors.pinkAccent)
+          border: Border.all(color: Color(0xff864942))
           ),
           child: rowcontent,
       ),

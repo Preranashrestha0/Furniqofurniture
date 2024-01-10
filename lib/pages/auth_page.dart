@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:furnitureapp/pages/demopage.dart';
 import 'package:furnitureapp/pages/loginpage.dart';
+import 'package:furnitureapp/pages/onBoardingpage.dart';
 
 class authpage extends StatelessWidget {
   const authpage({super.key});
@@ -14,7 +14,7 @@ class authpage extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot){
           if (snapshot.hasData){
-            return demopage();
+            return mainpage();
           }
           else{
             return loginpage();
