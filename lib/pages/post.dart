@@ -111,9 +111,9 @@ class _postState extends State<post> {
         "category": _selectedCategory.toString(),
         "productCondition": _productCondition.text,
         "publishedDate": publishedDate,
-        "orderedBy": "",
-        "deliveryAddress" : "",
-        "customerPhoneNo":"",
+        "orderedBy": " ",
+        "deliveryAddress" : " ",
+        "customerPhoneNo": " ",
       };
 
       // Add data to 'furniture_list' collection
@@ -356,7 +356,7 @@ class _postState extends State<post> {
                                     backgroundColor: Colors.brown,
                                   ),
                                 );
-                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => mainpage()));
+                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => OnBoardingPage()));
                               },
                               child: Text("Submit", style: TextStyle(color: Colors.amber)),
                             ),

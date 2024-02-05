@@ -63,7 +63,7 @@ class loginpagestate extends State<loginpage> {
       var authCredential = userCredential.user;
       print(authCredential!.uid);
       if (authCredential.uid.isNotEmpty) {
-        Navigator.push(context, CupertinoPageRoute(builder: (_) => mainpage()));
+        Navigator.push(context, CupertinoPageRoute(builder: (_) => OnBoardingPage()));
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Login Successful'),
@@ -118,7 +118,7 @@ class loginpagestate extends State<loginpage> {
       accessToken: googleAuth?.accessToken,
       idToken: googleAuth?.idToken,
     );
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>mainpage()));
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>OnBoardingPage()));
     // Once signed in, return the UserCredential
     return await FirebaseAuth.instance.signInWithCredential(credential) ;
   }

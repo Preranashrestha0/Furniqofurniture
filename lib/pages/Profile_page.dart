@@ -77,8 +77,8 @@ class _Profile_pageState extends State<Profile_page> {
                 child: Expanded(
                   child: Row(
                     children: [
-                      Image.asset('assets/images/Female_Profile.png'),
-                      Text(' ${user!.email} !!',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xff864942)),overflow: TextOverflow.ellipsis,),
+                      Image.asset('assets/images/Female_Profile.png', height: 80,),
+                      Text(' ${user!.email} !!',style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Color(0xff864942)),overflow: TextOverflow.ellipsis,),
                       IconButton(onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context)=> Profile())); },
                       icon: Icon(Icons.edit)),
                     ],

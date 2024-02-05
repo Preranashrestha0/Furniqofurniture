@@ -28,7 +28,7 @@ class _UserFormState extends State<UserForm> {
       "name":_nameController.text,
       "phone":_phoneController.text,
       "address":_addressController.text,
-    }).then((value) => Navigator.push(context, MaterialPageRoute(builder: (_)=>mainpage()))).catchError((error)=>print("something is wrong. $error"));
+    }).then((value) => Navigator.push(context, MaterialPageRoute(builder: (_)=>OnBoardingPage()))).catchError((error)=>print("something is wrong. $error"));
   }
 
   @override
@@ -63,9 +63,9 @@ class _UserFormState extends State<UserForm> {
                 ),
                 MyTextFormField(controller: _nameController, hintText: 'Enter your name'),
                 SizedBox(height: 10,),
-                MyTextFormField(controller: _phoneController, hintText: 'Enter your name',),
+                MyTextFormField(controller: _phoneController, hintText: 'Enter your phone',),
                 SizedBox(height: 10,),
-                MyTextFormField(controller: _addressController, hintText: 'Enter your name',),
+                MyTextFormField(controller: _addressController, hintText: 'Enter your address',),
                 SizedBox(
                   height: 50,
                 ),

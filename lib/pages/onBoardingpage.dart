@@ -9,14 +9,14 @@ import 'package:furnitureapp/pages/post.dart';
 import 'package:furnitureapp/pages/search.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-class mainpage extends StatefulWidget{
+class OnBoardingPage extends StatefulWidget{
 
-  mainpage({super.key});
+  OnBoardingPage({super.key});
   @override
-  mainpagestate createState() => mainpagestate();
+  OnBoardingPagestate createState() => OnBoardingPagestate();
 }
 
-class mainpagestate extends State<mainpage>{
+class OnBoardingPagestate extends State<OnBoardingPage>{
   int _selectedIndex = 0;
   // Placeholder for user data, replace this with your actual user data
   late User? user;

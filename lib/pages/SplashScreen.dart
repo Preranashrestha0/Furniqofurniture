@@ -2,15 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:furnitureapp/pages/loginpage.dart';
 
-class furnihomepage extends StatefulWidget{
+class SplashScreen extends StatefulWidget{
   @override
   State<StatefulWidget> createState(){
-    return furnihomepagestate();
+    return SplashScreenstate();
   }
 
 }
 
-class furnihomepagestate extends State<furnihomepage>{
+class SplashScreenstate extends State<SplashScreen>{
 
   @override
   Widget build(BuildContext context) {

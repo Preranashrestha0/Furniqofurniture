@@ -101,8 +101,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
         await postCollection.doc(doc.id).update({
           "status": "Order Confirmed",
           "Orderedby": user!.email.toString(),
-          "deliveryAddress": _deliveryaddress.text,
-          "customerPhoneNo": _deliveryaddress.text,
+          "deliveryAddress": _deliveryaddress.text.toString(),
+          "customerPhoneNo": _phoneNumber.text.toString(),
         });
       }
 
@@ -174,7 +174,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                         backgroundColor: Colors.brown,
                                       ),
                                     );
-                                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> mainpage()));
+                                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> OnBoardingPage()));
                                      },
                                   child: Text("Sure", style: TextStyle(color: Colors.amber)),
 

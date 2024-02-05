@@ -52,14 +52,35 @@ class _NotificationsState extends State<Notifications> {
 
               // Extract relevant information
               final String productName = post['name'];
+              final String price = post['price'];
               final String status = post['status'];
-              final String orderedby = post['OrderedBy'];
+              final String deliveryAddress = post['deliveryAddress'];
+              final String customerPhoneNo = post['customerPhoneNo'];
 
-              return ListTile(
-                leading: Text(productName),
-                title: Text('Status: $status'),
-                subtitle: Text('Ordered By : $orderedby'),
-                // Add more UI components as needed
+
+
+              return Container(
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white12,border: Border.all(color: Colors.black12)),
+                child: ListTile(
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Products'),
+                      Text(productName),
+                      Text('\$ $price'),
+                    ],
+                  ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Customer Details'),
+                      Text('Delivery Address: $deliveryAddress'),
+                      Text('Phone No: $customerPhoneNo'),
+                      Text('Status: $status'),
+                    ],
+                  ),
+                  // Add more UI components as needed
+                ),
               );
             },
           );
