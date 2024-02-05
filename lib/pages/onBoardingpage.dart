@@ -22,7 +22,8 @@ class OnBoardingPagestate extends State<OnBoardingPage>{
   late User? user;
 
   //bottom navigation pages
-  static const List<Widget> _pages = <Widget>[
+  static const
+  List<Widget> _pages = <Widget>[
     homepage(),
     searchpage(),
     post(),

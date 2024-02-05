@@ -2,13 +2,16 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:furnitureapp/pages/Cart.dart';
 import 'package:furnitureapp/pages/Notifications.dart';
 import 'package:furnitureapp/pages/search.dart';
 
 import 'productDetail.dart';
+import 'package:furnitureapp/pages/Wishlist_page.dart';
 
 class homepage extends StatefulWidget {
   const homepage({super.key});
@@ -66,7 +69,43 @@ class _homepageState extends State<homepage> {
     fetchProducts();
     _selectedCategory = "All products"; // Set the default category
     super.initState();
+    //for android mobile
+    //   const AndroidInitializationSettings androidInitializationSettings = AndroidInitializationSettings("@mipmap/ic_launcher");
+    //
+    //   const InitializationSettings initializationSettings = InitializationSettings(
+    //     android: androidInitializationSettings
+    //   );
+    //
+    //   flutterLocalNotificationsPlugin.initialize(
+    //       initializationSettings,
+    //       onDidReceiveBackgroundNotificationResponse: (dataYouNeedToUseWhenNotificationsIsClicked){});
+    //   Stream<QuerySnapshot<Map<String, dynamic>>> notificationStream =
+    //   FirebaseFirestore.instance.collection('furniture_list').snapshots();
+    //   notificationStream.listen((event){
+    //     if(event.docs.isEmpty){
+    //       return;
+    //     }
+    //     else{
+    //
+    //     }
+    //   });
+    // }
+    // void showNotifications(){
+    //
+    // }
   }
+  Future<List<Map<String, dynamic>>> getDataFromFirestore() async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection('furniture_list').get();
+    return querySnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+  }
+  Future<String> downloadImage(String images) async {
+    Reference ref = FirebaseStorage.instance.ref().child(images);
+    return await ref.getDownloadURL();
+  }
+  var imageURL = 'https://firebasestorage.googleapis.com/v0/b/furniqo.appspot.com/o/images%2F1703559803796.jpg?alt=media&token=3582b168-e9e5-46ea-919b-17a78248d37d';
+
+  final Stream<QuerySnapshot> _data = FirebaseFirestore.instance.collection('furniture_list').snapshots();
+
 
   @override
   Widget build(BuildContext context) {
